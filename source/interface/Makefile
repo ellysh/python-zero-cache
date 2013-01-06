@@ -1,7 +1,10 @@
+CLIENT_DIR = ../client
+CXXFLAGS = -I"/usr/include/python2.7" -I"/usr/lib/python2.7/config" -I"../common"
+
 all: clean
-	swig -python try.i
-	gcc -c -fpic try_wrap.c try.c  -DHAVE_CONFIG_H  -I"/usr/include/python2.7" -I"/usr/lib/python2.7/config"
-	gcc -shared try.o try_wrap.o -o _mytry.so
+	swig -python -c++ -make_default registrar_client.i
+	gcc -c -fpic registrar_client_wrap.cxx $(CLIENT_DIR)/registrar_client.cpp -DHAVE_CONFIG_H $(CXXFLAGS)
+	g++ -shared registrar_client.o registrar_client_wrap.o -o registrar_client_wrap.so
 
 clean:
-	rm -f try_wrap.* *.so *.o mytry.py
+	rm -f *_wrap.* *.so *.o *.py

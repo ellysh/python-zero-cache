@@ -5,5 +5,4 @@ SUBDIRS = source
 all: $(SUBDIRS)
 
 $(SUBDIRS):
-	$(MAKE) -C $@ clean
 	$(MAKE) -C $@
