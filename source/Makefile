@@ -1,4 +1,4 @@
-SUBDIRS = source
+SUBDIRS = interface
 
 .PHONY: all $(SUBDIRS)
 
