@@ -1,0 +1,130 @@
+python-zero-cache 0.1 version
+======================
+
+INTRODUCTION
+------------
+
+Zero-cache is a Open Source cross-platform distributed memory caching system based on ZMQ messaging library.
+
+Zero-cache is able to store data of any type that is addressed by key of string type.
+It provides the minimal response time thanks to multi-thread containers and absence of mutexes
+for requests synchronization. All synchronization is performed by messages processing mechanism.
+
+BUILDING
+--------
+
+You need the CMake build system, C++ compiler and libraries ZMQ, CZMQ to build this software.
+
+1. Copy CMake find modules for ZMQ and CZMQ libraries to your CMake modules system path.<br/>
+This is example for Ubuntu users:
+
+    $ cp *.cmake /usr/share/cmake-2.8/Modules
+
+2. Generate makefiles with CMake build system.<br/>
+Type one of these commands to build debug or release versions of the zero-cache:
+
+    $ cmake -D CMAKE_BUILD_TYPE=Debug CMakeLists.txt
+
+    $ cmake -D CMAKE_BUILD_TYPE=Release CMakeLists.txt
+
+3. Build binaries with C++ compiler:
+
+    $ make
+
+4. Build debian package if you use Debian-based Linux distribution:
+
+    $ make deb
+
+You can find debian packages in the `zero-cache/bin/deb` directory.
+
+INSTALLING
+----------
+
+Debian-based Linux distribution users can install debian packages from
+`zero-cache/bin/deb` directory.
+
+Another way is installing with Makefile default mechanism:
+
+    $ make install
+
+USAGE
+-----
+
+First of all you must launch zero-cache service. This is example for Unix socket based
+connection:
+
+    $ zero-cache -l /var/log/zero-cache.log -c "ipc:///tmp/0" -s 1000 -k 10
+
+**Please note that Unix socket file name must have number format.**
+
+This is example for TCP socket based connection:
+
+    $ zero-cache -l /var/log/zero-cache.log -c "tcp://*:5570" -s 1000 -k 10
+
+The command line arguments information is available by command:
+
+    $ zero-cache -h
+
+You client application must be linked with `libzero_cache.so` to access zero-cache
+client classes.
+
+This is example of typical client application for Unix socket based connection:
+
+    #include <string>
+    #include <iostream>
+    #include <zero-cache/registrar_client.h>
+
+    using namespace std;
+    using namespace zero_cache;
+
+    int main()
+    {
+        string key = "key1";
+        string data = "test data";
+
+        RegistrarClient client("example.log", "ipc:///tmp/0", kDealer);
+
+        client.WriteData(key, const_cast<char*>(data.c_str()), data.size());
+
+        char* read_data;
+        read_data = static_cast<char*>(client.ReadData(key));
+
+        cout << "read_data = " << read_data << endl;
+        free(read_data);
+    }
+
+This is example of typical client application for TCP socket based connection:
+
+    #include <string>
+    #include <iostream>
+    #include <zero-cache/registrar_client.h>
+
+    using namespace std;
+    using namespace zero_cache;
+
+    int main()
+    {
+        string key = "key1";
+        string data = "test data";
+
+        /* 192.168.0.1 - server ip
+         * 192.168.0.15 - client ip */
+        RegistrarClient client("example.log", "tcp://192.168.0.1:5570", kDealer);
+        client.SetHost("192.168.0.15:");
+
+        client.WriteData(key, const_cast<char*>(data.c_str()), data.size());
+
+        char* read_data;
+        read_data = static_cast<char*>(client.ReadData(key));
+
+        cout << "read_data = " << read_data << endl;
+        free(read_data);
+    }
+
+More usage examples you can find in files of 'test' directory.
+
+COPYING
+-------
+
+Free use of this software is granted under the terms of the GNU Lesser General
+Public License (LGPL). For details see the file `LICENSE` included with the zero-cache distribution.
