@@ -1,5 +1,6 @@
 *.o
 *.so
 *.cxx
+*.pyc
 
 registrar_client.py
