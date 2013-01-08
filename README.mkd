@@ -1,33 +1,22 @@
-python-zero-cache 0.1 version
+Python-zero-cache 0.1 version
 ======================
 
 INTRODUCTION
 ------------
 
-Zero-cache is a Open Source cross-platform distributed memory caching system based on ZMQ messaging library.
-
-Zero-cache is able to store data of any type that is addressed by key of string type.
-It provides the minimal response time thanks to multi-thread containers and absence of mutexes
-for requests synchronization. All synchronization is performed by messages processing mechanism.
+Python-zero-cache is a Python bindings for the zero-cache memory caching system
+based on ZMQ messaging library.
 
 BUILDING
 --------
 
-You need the CMake build system, C++ compiler and libraries ZMQ, CZMQ to build this software.
+You need the C++ compiler, SWIG and libraries ZMQ, CZMQ to build this software.
+Also the source code of the zero-cache system is needed.
 
-1. Copy CMake find modules for ZMQ and CZMQ libraries to your CMake modules system path.<br/>
-This is example for Ubuntu users:
+1. Check what symlinks to zero-cache sources in `source` directory of the python-zero-cache project is
+   correct.<br/>
 
-    $ cp *.cmake /usr/share/cmake-2.8/Modules
-
-2. Generate makefiles with CMake build system.<br/>
-Type one of these commands to build debug or release versions of the zero-cache:
-
-    $ cmake -D CMAKE_BUILD_TYPE=Debug CMakeLists.txt
-
-    $ cmake -D CMAKE_BUILD_TYPE=Release CMakeLists.txt
-
-3. Build binaries with C++ compiler:
+2. Build binaries with GNU Make. Type this command in the project root directory:
 
     $ make
 
@@ -35,13 +24,13 @@ Type one of these commands to build debug or release versions of the zero-cache:
 
     $ make deb
 
-You can find debian packages in the `zero-cache/bin/deb` directory.
+You can find debian packages in the `python-zero-cache/deb` directory.
 
 INSTALLING
 ----------
 
 Debian-based Linux distribution users can install debian packages from
-`zero-cache/bin/deb` directory.
+`python-zero-cache/deb` directory.
 
 Another way is installing with Makefile default mechanism:
 
@@ -65,61 +54,40 @@ The command line arguments information is available by command:
 
     $ zero-cache -h
 
-You client application must be linked with `libzero_cache.so` to access zero-cache
-client classes.
+Your client application must import the registrar_client module to access
+zero-cache classes.
 
 This is example of typical client application for Unix socket based connection:
 
-    #include <string>
-    #include <iostream>
-    #include <zero-cache/registrar_client.h>
+    #!/usr/bin/env python
 
-    using namespace std;
-    using namespace zero_cache;
+    import registrar_client
 
-    int main()
-    {
-        string key = "key1";
-        string data = "test data";
+    client = registrar_client.RegistrarClient("get_test.log", "ipc:///var/run/zero-cache/0", 0)
 
-        RegistrarClient client("example.log", "ipc:///tmp/0", kDealer);
+    key = "key1"
+    data = "test data 1\0"
 
-        client.WriteData(key, const_cast<char*>(data.c_str()), data.size());
+    client.WriteData(key, data, len(data))
+    result = client.ReadData(key) + '\0'
 
-        char* read_data;
-        read_data = static_cast<char*>(client.ReadData(key));
-
-        cout << "read_data = " << read_data << endl;
-        free(read_data);
-    }
+    assert data == result
 
 This is example of typical client application for TCP socket based connection:
 
-    #include <string>
-    #include <iostream>
-    #include <zero-cache/registrar_client.h>
+    #!/usr/bin/env python
 
-    using namespace std;
-    using namespace zero_cache;
+    import registrar_client
 
-    int main()
-    {
-        string key = "key1";
-        string data = "test data";
+    client = registrar_client.RegistrarClient("tcp_test.log", "tcp://localhost:5570", 0)
 
-        /* 192.168.0.1 - server ip
-         * 192.168.0.15 - client ip */
-        RegistrarClient client("example.log", "tcp://192.168.0.1:5570", kDealer);
-        client.SetHost("192.168.0.15:");
+    key = "key1"
+    data = "test data 1\0"
 
-        client.WriteData(key, const_cast<char*>(data.c_str()), data.size());
+    client.WriteData(key, data, len(data))
+    result = client.ReadData(key) + '\0'
 
-        char* read_data;
-        read_data = static_cast<char*>(client.ReadData(key));
-
-        cout << "read_data = " << read_data << endl;
-        free(read_data);
-    }
+    assert data == result
 
 More usage examples you can find in files of 'test' directory.
 
