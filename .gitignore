@@ -2,5 +2,15 @@
 *.so
 *.cxx
 *.pyc
+*.1
+*.log
+deb/
+*-stamp
+*.substvars
+*.debhelper
 
 registrar_client.py
+
+
+debian/files
+debian/python-zero-cache/

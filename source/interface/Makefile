@@ -20,5 +20,11 @@ $(MODULE_NAME):
 	gcc -c -fpic $(MODULE_NAME)_wrap.cxx $(CPP_FILES) -DHAVE_CONFIG_H $(CXXFLAGS)
 	g++ -shared $(OBJ_FILES) $(MODULE_NAME)_wrap.o -lczmq -o _$(MODULE_NAME).so
 
+install:
+	mkdir -p $(DESTDIR)/usr/lib/pyshared/python2.7
+	cp _$(MODULE_NAME).so $(DESTDIR)/usr/lib/pyshared/python2.7
+	mkdir -p $(DESTDIR)/usr/share/pyshared/zero-cache
+	cp $(MODULE_NAME).py $(DESTDIR)/usr/share/pyshared/zero-cache
+
 clean:
 	rm -f *_wrap.* *.so *.o *.py
