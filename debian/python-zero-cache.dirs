@@ -1,2 +1,2 @@
-usr/lib/pyshared/python2.7
-usr/share/pyshared/zero-cache
+usr/lib/python2.7
+usr/lib/python2.7/lib-dynload

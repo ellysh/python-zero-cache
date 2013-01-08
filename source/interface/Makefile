@@ -21,10 +21,10 @@ $(MODULE_NAME):
 	g++ -shared $(OBJ_FILES) $(MODULE_NAME)_wrap.o -lczmq -o _$(MODULE_NAME).so
 
 install:
-	mkdir -p $(DESTDIR)/usr/lib/pyshared/python2.7
-	cp _$(MODULE_NAME).so $(DESTDIR)/usr/lib/pyshared/python2.7
-	mkdir -p $(DESTDIR)/usr/share/pyshared/zero-cache
-	cp $(MODULE_NAME).py $(DESTDIR)/usr/share/pyshared/zero-cache
+	mkdir -p $(DESTDIR)/usr/lib/python2.7
+	cp $(MODULE_NAME).py $(DESTDIR)/usr/lib/python2.7
+	mkdir -p $(DESTDIR)/usr/lib/python2.7/lib-dynload
+	cp _$(MODULE_NAME).so $(DESTDIR)/usr/lib/python2.7/lib-dynload
 
 clean:
 	rm -f *_wrap.* *.so *.o *.py
