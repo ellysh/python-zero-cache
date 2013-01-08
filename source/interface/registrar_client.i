@@ -22,4 +22,8 @@ using namespace zero_cache;
     $1 = PyString_AsString($input);
 }
 
+%typemap(out) void* {
+   $result = PyString_FromString((char*)$1);
+}
+
 %include "../client/registrar_client.h"
