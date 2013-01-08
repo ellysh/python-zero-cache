@@ -1,0 +1,11 @@
+Source: python-zero-cache
+Section: main
+Priority: extra
+Maintainer: Ilya Shpigor <petrsum@gmail.com>
+Build-Depends: debhelper (>= 5)
+Standards-Version: 3.7.2
+
+Package: python-zero-cache
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, pkg-config
+Description: Python bindings for zero-cache system

@@ -1,0 +1,2 @@
+debian/buildroot/usr/lib/pyshared/python2.7/*           usr/lib/pyshared/python2.7
+debian/buildroot/usr/share/pyshared/zero-cache/*        usr/share/pyshared/zero-cache
