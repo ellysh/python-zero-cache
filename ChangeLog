@@ -1,2 +1,6 @@
+* python-zero-cache 0.2
+	- Add test python scripts
+	- Packaging application for debian
+
 * python-zero-cache 0.1
 	- Base functional implementation

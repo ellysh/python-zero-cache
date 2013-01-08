@@ -1,4 +1,4 @@
-Python-zero-cache 0.1 version
+Python-zero-cache 0.2 version
 ======================
 
 INTRODUCTION

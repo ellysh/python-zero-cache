@@ -1,3 +1,10 @@
+python-zero-cache (0.2) precise; urgency=low
+
+  * Add test python scripts
+  * Packaging application for debian 
+
+ -- Ilya Shpigor <petrsum@gmail.com>  Tue, 08 Jan 2013 18:27:50 +0400
+
 python-zero-cache (0.1) stable; urgency=low
 
   * First package version
