@@ -8,6 +8,8 @@ CPP_FILES = $(CLIENT_DIR)/registrar_client.cpp \
 			$(COMMON_DIR)/functions.cpp \
 			$(COMMON_DIR)/speaker.cpp \
 			$(COMMON_DIR)/socket.cpp
+INSTALL_LIB_DIR = usr/lib/python2.7/lib-dynload
+INSTALL_MODULE_DIR = usr/lib/python2.7
 
 OBJ_FILES = registrar_client.o debug.o functions.o client_list.o client.o connection.o socket.o speaker.o
 CXXFLAGS = -I"/usr/include/python2.7" -I"/usr/lib/python2.7/config" -I"../common" -I"../server"
@@ -21,10 +23,10 @@ $(MODULE_NAME):
 	g++ -shared $(OBJ_FILES) $(MODULE_NAME)_wrap.o -lczmq -o _$(MODULE_NAME).so
 
 install:
-	mkdir -p $(DESTDIR)/usr/lib/python2.7
-	cp $(MODULE_NAME).py $(DESTDIR)/usr/lib/python2.7
-	mkdir -p $(DESTDIR)/usr/lib/python2.7/lib-dynload
-	cp _$(MODULE_NAME).so $(DESTDIR)/usr/lib/python2.7/lib-dynload
+	mkdir -p $(DESTDIR)/$(INSTALL_MODULE_DIR)
+	cp $(MODULE_NAME).py $(DESTDIR)/$(INSTALL_MODULE_DIR)
+	mkdir -p $(DESTDIR)/$(INSTALL_LIB_DIR)
+	cp _$(MODULE_NAME).so $(DESTDIR)/$(INSTALL_LIB_DIR)
 
 clean:
 	rm -f *_wrap.* *.so *.o *.py
