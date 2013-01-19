@@ -20,7 +20,7 @@ all: clean $(MODULE_NAME)
 $(MODULE_NAME):
 	swig -python -c++ -make_default $(MODULE_NAME).i
 	gcc -c -fpic $(MODULE_NAME)_wrap.cxx $(CPP_FILES) -DHAVE_CONFIG_H $(CXXFLAGS)
-	g++ -shared $(OBJ_FILES) $(MODULE_NAME)_wrap.o -lczmq -o _$(MODULE_NAME).so
+	g++ -shared $(OBJ_FILES) $(MODULE_NAME)_wrap.o -lzmq -o _$(MODULE_NAME).so
 
 install:
 	mkdir -p $(DESTDIR)/$(INSTALL_MODULE_DIR)
