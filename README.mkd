@@ -10,7 +10,7 @@ based on ZMQ messaging library.
 BUILDING
 --------
 
-You need the C++ compiler, SWIG and libraries ZMQ, CZMQ to build this software.
+You need the C++ compiler, SWIG and ZMQ library to build this software.
 Also the source code of the zero-cache system is needed.
 
 1. Check what symlinks to zero-cache sources in `source` directory of the python-zero-cache project is
