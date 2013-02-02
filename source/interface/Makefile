@@ -2,8 +2,11 @@ CLIENT_DIR = ../client
 COMMON_DIR = ../common
 CPP_FILES = $(CLIENT_DIR)/registrar_client.cpp \
 			$(CLIENT_DIR)/client_list.cpp \
+			$(CLIENT_DIR)/client_base.cpp \
 			$(CLIENT_DIR)/client.cpp \
 			$(COMMON_DIR)/debug.cpp \
+			$(COMMON_DIR)/request.cpp \
+			$(COMMON_DIR)/answer.cpp \
 			$(COMMON_DIR)/connection.cpp \
 			$(COMMON_DIR)/functions.cpp \
 			$(COMMON_DIR)/speaker.cpp \
@@ -11,7 +14,7 @@ CPP_FILES = $(CLIENT_DIR)/registrar_client.cpp \
 INSTALL_LIB_DIR = usr/lib/python2.7/lib-dynload
 INSTALL_MODULE_DIR = usr/lib/python2.7
 
-OBJ_FILES = registrar_client.o debug.o functions.o client_list.o client.o connection.o socket.o speaker.o
+OBJ_FILES = registrar_client.o client_base.o debug.o functions.o client_list.o client.o connection.o socket.o speaker.o answer.o request.o
 CXXFLAGS = -I"/usr/include/python2.7" -I"/usr/lib/python2.7/config" -I"../common" -I"../server"
 MODULE_NAME = registrar_client
 
