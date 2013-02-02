@@ -23,7 +23,10 @@ using namespace zero_cache;
 }
 
 %typemap(out) void* {
-   $result = PyString_FromString((char*)$1);
+   if ( $1 != NULL )
+        $result = PyString_FromString((char*)$1);
+    else
+        $result = PyString_FromString("");
 }
 
 %include "../client/registrar_client.h"

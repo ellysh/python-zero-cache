@@ -8,6 +8,9 @@ key = "key1"
 data = "test data 1\0"
 
 client.WriteData(key, data, len(data))
-result = client.ReadData(key) + '\0'
 
-assert data == result
+result = client.ReadData(key) + '\0'
+assert result == data
+
+result = client.ReadData("key2")
+assert result == ""
