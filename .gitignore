@@ -9,8 +9,7 @@ deb/
 *.substvars
 *.debhelper
 
-registrar_client.py
-
+client_wrap.py
 
 debian/files
 debian/python-zero-cache/
