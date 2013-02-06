@@ -1,4 +1,4 @@
-Python-zero-cache 0.2 version
+Python-zero-cache 1.4 version
 ======================
 
 INTRODUCTION
@@ -61,33 +61,29 @@ This is example of typical client application for Unix socket based connection:
 
     #!/usr/bin/env python
 
-    import registrar_client
+    import client_wrap
 
-    client = registrar_client.RegistrarClient("get_test.log", "ipc:///var/run/zero-cache/0", 0)
+    client = client_wrap.ClientWrap("get_test.log", "ipc:///var/run/zero-cache/0", 0)
 
     key = "key1"
-    data = "test data 1\0"
+    data = "test data 1"
 
-    client.WriteData(key, data, len(data))
-    result = client.ReadData(key) + '\0'
-
-    assert data == result
+    client.WriteString(key, data)
+    result = client.ReadString(key)
 
 This is example of typical client application for TCP socket based connection:
 
     #!/usr/bin/env python
 
-    import registrar_client
+    import client_wrap
 
-    client = registrar_client.RegistrarClient("tcp_test.log", "tcp://localhost:5570", 0)
+    client = client_wrap.ClientWrap("tcp_test.log", "tcp://localhost:5570", 0)
 
     key = "key1"
-    data = "test data 1\0"
+    data = "test data 1"
 
-    client.WriteData(key, data, len(data))
-    result = client.ReadData(key) + '\0'
-
-    assert data == result
+    client.WriteString(key, data)
+    result = client.ReadString(key)
 
 More usage examples you can find in files of 'test' directory.
 

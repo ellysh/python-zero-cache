@@ -1,3 +1,10 @@
+python-zero-cache (1.4) precise; urgency=low
+
+  * Use type safe ClientWrap class to interact with zero-cahe
+  * Fixes according to zero-cache 1.4 API
+
+ -- Ilya Shpigor <petrsum@gmail.com>  Wed, 06 Feb 2013 16:18:16 +0400
+
 python-zero-cache (0.2) precise; urgency=low
 
   * Add test python scripts

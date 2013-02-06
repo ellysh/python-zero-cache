@@ -11,6 +11,7 @@ install:
 	$(MAKE) -C $(SUBDIRS) install
 
 deb:
+	mkdir -p deb
 	rm -fR deb/*
 	dpkg-buildpackage -rfakeroot -b -us -uc
 	mv -f ../*.changes ../*.deb deb
