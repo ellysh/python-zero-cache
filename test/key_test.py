@@ -12,8 +12,12 @@ def init_data(client):
     client.WriteLong(KEY_2, DATA_LONG)
 
 def check_keys(client):
-    keys = client.GetKeys()
-    print keys
+    string = client.GetKeys()
+    keys = string.split (';')
+    del keys[-1]
+    assert len(keys) == 2
+    assert keys[0] == KEY_1
+    assert keys[1] == KEY_2
 
 def main():
     client = client_wrap.ClientWrap("get_test.log", "ipc:///var/run/zero-cache/0", 0)
