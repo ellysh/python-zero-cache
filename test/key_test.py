@@ -21,6 +21,7 @@ def check_keys(client):
 
 def main():
     client = client_wrap.ClientWrap("get_test.log", "ipc:///var/run/zero-cache/0", 0)
+    client.GetKeys()
     init_data(client)
     check_keys(client)
 
