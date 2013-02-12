@@ -1,3 +1,10 @@
+python-zero-cache (1.5) precise; urgency=low
+
+  * Add test script for keys receiving
+  * Fixes according to zero-cache 1.5 API
+
+ -- Ilya Shpigor <petrsum@gmail.com>  Tue, 12 Feb 2013 15:08:25 +0400
+
 python-zero-cache (1.4) precise; urgency=low
 
   * Use type safe ClientWrap class to interact with zero-cahe
