@@ -54,7 +54,7 @@ The command line arguments information is available by command:
 
     $ zero-cache -h
 
-Your client application must import the registrar_client module to access
+Your client application must import the `registrar_client` module to access
 zero-cache classes.
 
 This is example of typical client application for Unix socket based connection:
@@ -85,7 +85,7 @@ This is example of typical client application for TCP socket based connection:
     client.WriteString(key, data)
     result = client.ReadString(key)
 
-More usage examples you can find in files of 'test' directory.
+More usage examples you can find in files of `test` directory.
 
 COPYING
 -------
