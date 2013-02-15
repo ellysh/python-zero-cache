@@ -14,7 +14,6 @@ def check_data(client):
 
 def main():
     client = client_wrap.ClientWrap("tcp_test.log", "tcp://localhost:5570", 0)
-
     init_data(client)
     check_data(client)
 
