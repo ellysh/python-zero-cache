@@ -8,7 +8,7 @@ INSTALL_MODULE_DIR = usr/lib/python2.7
 
 OBJ_FILES = client.o debug.o speaker.o
 CXXFLAGS = -I"/usr/include/python2.7" -I"/usr/lib/python2.7/config" -I"../common" -I"../server"
-MODULE_NAME = client
+MODULE_NAME = zero_cache
 
 all: clean $(MODULE_NAME)
 

@@ -9,7 +9,7 @@ deb/
 *.substvars
 *.debhelper
 
-client.py
+zero_cache.py
 
 debian/buildroot
 debian/files

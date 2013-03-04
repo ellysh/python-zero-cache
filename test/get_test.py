@@ -1,28 +1,23 @@
 #!/usr/bin/env python
 
-import client_wrap
+import zero_cache
 
-KEY_LONG = "key1"
+INDEX_LONG = 0
 DATA_LONG = 1024
 
-KEY_DOUBLE = "key2"
+INDEX_DOUBLE = 1
 DATA_DOUBLE = 100.53
 
-KEY_STRING = "key3"
-DATA_STRING = "test data"
-
 def init_data(client):
-    client.WriteLong(KEY_LONG, DATA_LONG)
-    client.WriteDouble(KEY_DOUBLE, DATA_DOUBLE)
-    client.WriteString(KEY_STRING, DATA_STRING)
+    client.WriteLong(INDEX_LONG, DATA_LONG)
+    client.WriteDouble(INDEX_DOUBLE, DATA_DOUBLE)
 
 def check_data(client):
-    assert DATA_LONG == client.ReadLong(KEY_LONG)
-    assert DATA_DOUBLE == client.ReadDouble(KEY_DOUBLE)
-    assert DATA_STRING == client.ReadString(KEY_STRING)
+    assert DATA_LONG == client.ReadLong(INDEX_LONG)
+    assert DATA_DOUBLE == client.ReadDouble(INDEX_DOUBLE)
 
 def main():
-    client = client_wrap.ClientWrap("get_test.log", "ipc:///var/run/zero-cache/0", 0)
+    client = zero_cache.Client()
     init_data(client)
     check_data(client)
 

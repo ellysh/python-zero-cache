@@ -1,4 +1,4 @@
-%module client
+%module zero_cache
 
 %{
 #include "../client/client.h"
