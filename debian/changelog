@@ -1,3 +1,9 @@
+python-zero-cache (2.0) precise; urgency=low
+
+  * Fixes according to zero-cache 2.0 API
+
+ -- Ilya Shpigor <petrsum@gmail.com>  Mon, 04 Mar 2013 12:08:09 +0400
+
 python-zero-cache (1.5) precise; urgency=low
 
   * Add test script for keys receiving

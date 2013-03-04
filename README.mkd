@@ -1,22 +1,21 @@
-Python-zero-cache 1.5 version
+Python-zero-cache 2.0 version
 ======================
 
 INTRODUCTION
 ------------
 
-Python-zero-cache is a Python bindings for the zero-cache memory caching system
-based on ZMQ messaging library.
+Python-zero-cache is a Python bindings for the zero-cache kernel space caching system.
 
 BUILDING
 --------
 
-You need the C++ compiler, SWIG and ZMQ library to build this software.
+You need the C++ compiler and SWIG to build this software.
 Also the source code of the zero-cache system is needed.
 
-1. Check what symlinks to zero-cache sources in `source` directory of the python-zero-cache project is
+1. Check that the symlinks to zero-cache sources in `source` directory of the python-zero-cache project is
    correct.<br/>
 
-2. Build binaries with GNU Make. Type this command in the project root directory:
+2. Build binaries with GNU Make. Type this command in the project's root directory:
 
     $ make
 
@@ -39,51 +38,35 @@ Another way is installing with Makefile default mechanism:
 USAGE
 -----
 
-First of all you must launch zero-cache service. This is example for Unix socket based
-connection:
+**ATTENTION: You need the soft real-time or hard real-time Linux kernel to use
+zero-cache server module!**
 
-    $ zero-cache -l /var/log/zero-cache.log -c "ipc:///tmp/0" -s 1000 -k 10
+First of all you must load the server zero-cache module into your kernel:
 
-**Please note that Unix socket file name must have number format.**
+    $ insmod source/server/zero_cache.ko
 
-This is example for TCP socket based connection:
+The `zero_cache` device file will be created at the `/dev` directory. Now the
+zero-cache server is ready to work.
 
-    $ zero-cache -l /var/log/zero-cache.log -c "tcp://*:5570" -s 1000 -k 10
+EXAMLPES
+--------
 
-The command line arguments information is available by command:
-
-    $ zero-cache -h
-
-Your client application must import the `registrar_client` module to access
+Your client application must import the `zero_cache` module to access
 zero-cache classes.
 
-This is example of typical client application for Unix socket based connection:
+This is example of typical client application:
 
     #!/usr/bin/env python
 
-    import client_wrap
+    import zero_cache
 
-    client = client_wrap.ClientWrap("get_test.log", "ipc:///var/run/zero-cache/0", 0)
+    client = zero_cache.Client()
 
-    key = "key1"
-    data = "test data 1"
+    index = 0
+    data = 1024
 
-    client.WriteString(key, data)
-    result = client.ReadString(key)
-
-This is example of typical client application for TCP socket based connection:
-
-    #!/usr/bin/env python
-
-    import client_wrap
-
-    client = client_wrap.ClientWrap("tcp_test.log", "tcp://localhost:5570", 0)
-
-    key = "key1"
-    data = "test data 1"
-
-    client.WriteString(key, data)
-    result = client.ReadString(key)
+    client.WriteLong(index, data)
+    result = client.ReadLong(index)
 
 More usage examples you can find in files of `test` directory.
 
