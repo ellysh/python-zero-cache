@@ -7,7 +7,7 @@ def print_index(client):
         print("%d = %d" % (index, client.ReadLong(index)))
 
 def main():
-    client = zero_cache.Client()
+    client = zero_cache.TypedClient()
     print_index(client)
 
 if __name__ == "__main__":

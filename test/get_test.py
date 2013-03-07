@@ -17,7 +17,8 @@ def check_data(client):
     assert DATA_DOUBLE == client.ReadDouble(INDEX_DOUBLE)
 
 def main():
-    client = zero_cache.Client()
+    client = zero_cache.TypedClient()
+    client.ClearCache()
     init_data(client)
     check_data(client)
 

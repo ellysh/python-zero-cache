@@ -1,12 +1,13 @@
 CLIENT_DIR = ../client
 COMMON_DIR = ../common
-CPP_FILES = $(CLIENT_DIR)/client.cpp \
+CPP_FILES = $(CLIENT_DIR)/typed_client.cpp \
+			$(CLIENT_DIR)/untyped_client.cpp \
 			$(COMMON_DIR)/debug.cpp \
 			$(COMMON_DIR)/speaker.cpp
 INSTALL_LIB_DIR = usr/lib/python2.7/lib-dynload
 INSTALL_MODULE_DIR = usr/lib/python2.7
 
-OBJ_FILES = client.o debug.o speaker.o
+OBJ_FILES = typed_client.o untyped_client.o debug.o speaker.o
 CXXFLAGS = -I"/usr/include/python2.7" -I"/usr/lib/python2.7/config" -I"../common" -I"../server"
 MODULE_NAME = zero_cache
 
