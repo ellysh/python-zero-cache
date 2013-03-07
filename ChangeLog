@@ -1,3 +1,6 @@
+* python-zero-cache 2.2
+	- Fixes according to zero-cache 2.2 API
+
 * python-zero-cache 2.0
 	- Fixes according to zero-cache 2.0 API
 

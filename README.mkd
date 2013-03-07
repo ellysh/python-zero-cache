@@ -1,4 +1,4 @@
-Python-zero-cache 2.0 version
+Python-zero-cache 2.2 version
 ======================
 
 INTRODUCTION
@@ -57,7 +57,7 @@ This is example of typical client application:
 
     import zero_cache
 
-    client = zero_cache.Client()
+    client = zero_cache.TypedClient()
 
     index = 0
     data = 1024
